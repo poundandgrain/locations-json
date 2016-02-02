@@ -48,7 +48,7 @@ class Locations_JSON_Command extends WP_CLI_Command {
 			$locationCount = count($locationsArray);
 
 			$upload_dir = wp_upload_dir();
-+			$fileName = $upload_dir['basedir'] .'/locations.txt';
+			$fileName = $upload_dir['basedir'] .'/locations.txt';
 
 			//this is the part returned
 			$locationData = '[';

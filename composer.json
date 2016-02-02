@@ -1,0 +1,11 @@
+{
+  "name": "poundandgrain/locations-json",
+  "type": "wordpress-muplugin",
+  "homepage": "https://github.com/poundandgrain/locations-json",
+  "license": "private",
+  "description": "WP plugin to better generate json file for geolocation.",
+  "keywords": ["plugin","wordpress","geolocation"],
+  "require": {
+    "composer/installers": "~1.0.6"
+  }
+}
