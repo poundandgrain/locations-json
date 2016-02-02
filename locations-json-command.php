@@ -21,14 +21,14 @@ class Locations_JSON_Command extends WP_CLI_Command {
 				$latlon = get_field("latitude_longitude", $id);
 
 				if ($latlon){
-					$address = get_field("address1", $id);
+					$address = sanitize_text_field( get_field("address1", $id) );
 					if ( get_field("address2", $id) ){
-						$address .= ", " . get_field("address2", $id);
+						$address .= ", " . sanitize_text_field( get_field("address2", $id) );
 					}
-					$address .= ", " . get_field("city", $id);
-					$address .= ", " . get_field("state", $id);
-					$address .= ", " . get_field("country", $id);
-					$address .= ", " . get_field("zip_code", $id);
+					$address .= ", " . sanitize_text_field( get_field("city", $id) );
+					$address .= ", " . sanitize_text_field( get_field("state", $id) );
+					$address .= ", " . sanitize_text_field( get_field("country", $id) );
+					$address .= ", " . sanitize_text_field( get_field("zip_code", $id) );
 
 
 					$locationsArray[] = array(
@@ -36,7 +36,7 @@ class Locations_JSON_Command extends WP_CLI_Command {
 						//"icon" => get_template_directory_uri() . "/assets/images/map/map-marker.png",
 						"lat" => $latlon['lat'],
 						"lng" => $latlon['lng'],
-						"title" => get_the_title( $id ),
+						"title" => sanitize_text_field( get_the_title( $id ) ),
 						"address" => $address,
 						"phone" => get_field('phone', $id),
 						"url" => get_field('website_url', $id),
@@ -47,7 +47,8 @@ class Locations_JSON_Command extends WP_CLI_Command {
 
 			$locationCount = count($locationsArray);
 
-			$fileName = $_SERVER['DOCUMENT_ROOT'] .'/locations.txt';
+			$upload_dir = wp_upload_dir();
++			$fileName = $upload_dir['basedir'] .'/locations.txt';
 
 			//this is the part returned
 			$locationData = '[';
