@@ -34,15 +34,18 @@ class Locations_JSON_Command extends WP_CLI_Command {
 						$address .= ", " . sanitize_text_field( get_field("state", $id) );
 						$address .= ", " . sanitize_text_field( get_field("country", $id) );
 						$address .= ", " . sanitize_text_field( get_field("zip_code", $id) );
-
+						$address = str_replace(array('"', "'"), '', $address);
+						
+						$title = sanitize_text_field( get_the_title( $id ) );
+						$title = str_replace(array('"', "'"), '', $title);
 
 						$locationsArray[] = array(
 							//'distance' => $distance,
 							//"icon" => get_template_directory_uri() . "/assets/images/map/map-marker.png",
 							"lat" => $latlon['lat'],
 							"lng" => $latlon['lng'],
-							"title" => addslashes(sanitize_text_field( get_the_title( $id ) )),
-							"address" => addslashes($address),
+							"title" => $title,
+							"address" => $address,
 							"phone" => get_field('phone', $id),
 							"url" => get_field('website_url', $id),
 							"fb" => get_field('facebook_url', $id),
