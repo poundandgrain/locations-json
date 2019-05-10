@@ -6,6 +6,6 @@
   "description": "WP plugin to better generate json file for geolocation.",
   "keywords": ["plugin","wordpress","geolocation"],
   "require": {
-    "composer/installers": "~1.0.6"
+    "composer/installers": "^1.0"
   }
 }
