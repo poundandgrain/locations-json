@@ -44,7 +44,7 @@ class Locations_JSON_Command extends WP_CLI_Command {
 							//"icon" => get_template_directory_uri() . "/assets/images/map/map-marker.png",
 							"lat" => $latlon['lat'],
 							"lng" => $latlon['lng'],
-							"title" => $title,
+							"title" => sanitize_text_field( get_the_title( $id ) ),
 							"address" => $address,
 							"phone" => get_field('phone', $id),
 							"url" => get_field('website_url', $id),
